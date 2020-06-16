@@ -82,13 +82,16 @@
               }
               .table {
                 border-collapse: collapse;
-                margin: 25px 0;
+                margin-top: 1px;
+                margin-bottom: 10px;
                 font-size: 0.9em;
                 min-width: 400px;
                 border-radius: 5px 5px 0 0;
                 overflow: hidden;
                 box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
                 float: left;
+                margin-left:250px;
+                margin-right:auto;
               }
               
               .table thead tr {
@@ -127,3 +130,4 @@
                 text-align: center;
                 font-size: 200px;
               }
+              
