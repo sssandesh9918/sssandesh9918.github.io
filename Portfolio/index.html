@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Portfolio</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" >
+        <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+        <meta content="utf-8" http-equiv="encoding">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="shortcut icon" type="image/png" href="/favicon.png"/>
+
+    </head>
+        <body>
+            <div id="Loading">
+                Loading....
+            </div>
+            <div id="maincontainer" hidden>
+            <div class="image">
+                <img
+                    height="300" 
+                    width ="300"
+                    id="profilePicture"
+                >
+                    <strong><p id="githubid"></p></strong>
+                    <strong><p id="bio"></p></strong>
+            </div>
+            <div class="centre">
+                <br>
+                <br> 
+                <p id="name"><span class="firstname"><strong>SANDESH</span> SUBEDI</strong></p>
+                <p id="address"><span class="firstname"><strong>Bharatpur-8</span>,Chitwan.</strong>
+                <a class ="contact" href="mailto:ss.sandesh9918@gmail.com" style="text-decoration: none; color: inherit;">Contact Me</a>
+                </p><br>
+                <br>
+                <p class="quote">I am a Computer Engineering graduate from Kathmandu Engineering College. My goal is to become a qualified Computer Engineer and to work on projects with python. Currently I'm a student in Insight Workshop Academy. </p>
+            </div>
+            <div style="text-align: center";>
+                <a href="https://www.facebook.com/ss.sandesh9918" class="fa fa-facebook fa-2x" target="_blank"></a>
+                <a href="https://twitter.com/SandeshSubedi9/" class="fa fa-twitter fa-2x" target="_blank"></a> 
+                <a href="https://www.instagram.com/__s_a_n_d_e_s_h/" class="fa fa-instagram fa-2x" target="_blank"></a> 
+                <a href="https://www.linkedin.com/in/sandesh-subedi-429269123/" class="fa fa-linkedin fa-2x" target="_blank"></a> 
+                <a id="githublink" class="fa fa-github fa-2x" target="_blank"></a> 
+                <a class="twitter-timeline" width="280" height="300"href="https://twitter.com/SandeshSubedi9?ref_src=twsrc%5Etfw">Tweets by SandeshSubedi9</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
+            </div>
+            <section class="centre";>
+                <h1>PROJECTS</h1>
+                <div class="record">
+                <table class='table' >
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Repo_name</th>
+                            <th>URL</th>
+                        </tr>
+                    </thead>
+                    <tbody id="data">
+                        <tr>
+                            <td></data></td>
+                            <td></td>
+                            <td><td>
+                        </tr>
+                    </tbody>
+                </table>
+               </div>
+            </section>
+            </div>
+                
+            <script>
+                fetch("https://api.github.com/users/sssandesh9918")
+                    .then(response => response.json())
+                    .then(function(data) {
+                        console.log(data)
+                        document.getElementById('profilePicture').src = data['avatar_url']
+                        document.getElementById('githubid').textContent = data['login']
+                        document.getElementById('bio').textContent = data['bio']
+                        document.getElementById('githublink').href=data['html_url']
+                    })
+                    fetch("https://api.github.com/users/sssandesh9918/repos")
+                        .then(response => response.json())
+                        .then(data=> {
+                            console.log(data);
+                            if(data.length >0){
+                                var temp ="";
+
+                                data.forEach((u) => {
+                                    temp +="<tr>";
+                                        temp +="<td>"+u.id+"</td>";
+                                        temp +="<td>"+u.name+"</td>";
+                                        temp +="<td>"+"<a href="+"'"+u.html_url+"'"+">"+u.html_url+"</a>"+"</td>"+"</tr>";
+                                })
+                                document.getElementById("data").innerHTML=temp;
+                                document.getElementById("maincontainer").hidden=false
+                                document.getElementById("Loading").hidden=true
+                            }
+
+                        })
+                        
+            </script>
+        </body>
+</html>
